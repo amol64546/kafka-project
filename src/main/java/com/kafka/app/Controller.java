@@ -6,21 +6,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class KafkaController {
+public class Controller {
 
   @Autowired
-  private KafkaProducer kafkaProducer;
+  private SpringProducer springProducer;
 
-//  @PostMapping("/string")
-//  public String sendMessage(@RequestBody String message) {
-//    kafkaProducer.sendMessage(message);
-//    return "Message sent!";
-//  }
+  @PostMapping("/string")
+  public String sendMessage(@RequestBody String message) {
+    springProducer.sendMessage(message);
+    return "Message sent!";
+  }
 
   @PostMapping("/message")
-  public String sendMessage() {
-    MyMessage message = new MyMessage("John", 25);
-    kafkaProducer.sendMessage(message);
+  public String sendMessage(@RequestBody MyMessage message) {
+    springProducer.sendMessage(message);
     return "Message sent!";
   }
 }
