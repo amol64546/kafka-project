@@ -1,4 +1,4 @@
-package com.kafka.app;
+package com.kafka.app.spring;
 
 
 import java.io.Serializable;

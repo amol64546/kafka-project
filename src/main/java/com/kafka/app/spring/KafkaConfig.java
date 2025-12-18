@@ -1,4 +1,4 @@
-package com.kafka.app;
+package com.kafka.app.spring;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -52,7 +52,7 @@ public class KafkaConfig {
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         producerProps.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, true);
-        producerProps.put(JsonSerializer.TYPE_MAPPINGS, "MyMessage:com.kafka.app.MyMessage");
+        producerProps.put(JsonSerializer.TYPE_MAPPINGS, "MyMessage:com.kafka.app.spring.MyMessage");
 //        JsonSerializer<MyMessage> jsonSerializer = new JsonSerializer<>();
         ProducerFactory<String, MyMessage> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
         return new KafkaTemplate<>(producerFactory);
@@ -69,7 +69,7 @@ public class KafkaConfig {
         consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         consumerProps.put(JsonDeserializer.TRUSTED_PACKAGES, "com.kafka.app");
-        consumerProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.kafka.app.MyMessage");
+        consumerProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.kafka.app.spring.MyMessage");
 //        JsonDeserializer<MyMessage> jsonDeserializer = new JsonDeserializer<>(MyMessage.class);
 //        jsonDeserializer.addTrustedPackages("com.kafka.app");
         ConsumerFactory<String, MyMessage> consumerFactory = new DefaultKafkaConsumerFactory<>(consumerProps);

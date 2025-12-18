@@ -1,4 +1,4 @@
-package com.kafka.app;
+package com.kafka.app.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.EnableKafka;
